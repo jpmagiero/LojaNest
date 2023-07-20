@@ -1,16 +1,17 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { UserRepository } from './user.repository';
-import { createUserDTO } from './dto/createUser.dto';
+import { CreateUserDTO } from './dto/createUser.dto';
 import { UserEntity } from './user.entity';
 import { v4 as uuid } from 'uuid';
 import { UserListDTO } from './dto/ userList.dto';
+import { UpdateUserDTO } from './dto/updateUser.dto';
 
 @Controller('/users')
 export class UserController {
   constructor(private userRepository: UserRepository) { }
 
   @Post()
-  async createUser(@Body() userData: createUserDTO) {
+  async createUser(@Body() userData: CreateUserDTO) {
     const userEntity = new UserEntity();
     userEntity.id = uuid();
     userEntity.name = userData.name;
@@ -34,5 +35,25 @@ export class UserController {
       )
     );
     return userList;
+  }
+
+  @Put('/:id')
+  async updateUser(@Param('id') id: string, @Body() newData: UpdateUserDTO) {
+    const userUpdated = await this.userRepository.update(id, newData);
+
+    return {
+      user: userUpdated,
+      message: 'User updated successfully'
+    }
+  }
+
+  @Delete('/:id')
+  async deleteUser(@Param('id') id: string){
+    const userDeleted = await this.userRepository.delete(id);
+
+    return {
+      user: userDeleted,
+      message: 'User delete successfully'
+    }
   }
 }
