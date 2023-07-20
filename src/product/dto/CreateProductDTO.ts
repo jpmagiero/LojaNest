@@ -4,6 +4,7 @@ import {
   IsISO8601,
   IsNotEmpty,
   IsNumber,
+  IsUUID,
   MaxLength,
   Min,
   ValidateNested,
@@ -14,6 +15,9 @@ import { ProductImageDTO } from './ProductImageDTO';
 export class CreateProductDTO {
   @IsNotEmpty()
   name: string;
+
+  @IsUUID(undefined, { message: 'Invalid UserId'})
+  userId: string;
 
   @IsNumber()
   @Min(1)
