@@ -9,8 +9,8 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
-import { ProductCharacteristicsDTO } from './ProductCharacteristicsDTO';
-import { ProductImageDTO } from './ProductImageDTO';
+import { ProductCharacteristicsDTO } from './productCharacteristics.dto';
+import { ProductImageDTO } from './productImage.dto';
 
 export class CreateProductDTO {
   @IsNotEmpty()

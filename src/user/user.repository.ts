@@ -44,7 +44,7 @@ export class UserRepository {
     const user = this.findById(id);
 
     this.users = this.users.filter(
-      saveUSer => saveUSer.id !== id
+      saveUser => saveUser.id !== id
     );
 
     return user;

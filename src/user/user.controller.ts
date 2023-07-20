@@ -3,7 +3,7 @@ import { UserRepository } from './user.repository';
 import { CreateUserDTO } from './dto/createUser.dto';
 import { UserEntity } from './user.entity';
 import { v4 as uuid } from 'uuid';
-import { UserListDTO } from './dto/ userList.dto';
+import { UserListDTO } from './dto/userList.dto';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 
 @Controller('/users')
